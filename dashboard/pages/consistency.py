@@ -13,16 +13,16 @@ def render_consistency_page(view_df: pd.DataFrame) -> None:
     render_section_header("Consistency and Distribution", "Training patterns, repeatability, and the shape of your run distances and paces.")
     heat_left, dist_right = st.columns([1.1, 1.1])
     with heat_left:
-        st.plotly_chart(build_heatmap_chart(view_df), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_heatmap_chart(view_df), width="stretch", config=PLOTLY_CONFIG)
     with dist_right:
-        st.plotly_chart(build_pace_distance_heatmap(view_df), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_pace_distance_heatmap(view_df), width="stretch", config=PLOTLY_CONFIG)
 
     hist_left, hist_right = st.columns([1.1, 1.1])
     with hist_left:
-        st.plotly_chart(build_histogram_chart(view_df, "distance_km", "Run Distance Distribution", "Distance (km)"), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_histogram_chart(view_df, "distance_km", "Run Distance Distribution", "Distance (km)"), width="stretch", config=PLOTLY_CONFIG)
     with hist_right:
         pace_distribution = view_df.dropna(subset=["pace_sec_per_km"])
-        st.plotly_chart(build_histogram_chart(pace_distribution, "pace_sec_per_km", "Pace Distribution", "Pace (min/km)"), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_histogram_chart(pace_distribution, "pace_sec_per_km", "Pace Distribution", "Pace (min/km)"), width="stretch", config=PLOTLY_CONFIG)
 
     pr_col_left, pr_col_right = st.columns(2)
     with pr_col_left:

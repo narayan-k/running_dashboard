@@ -36,7 +36,7 @@ def render_routes_page(view_df: pd.DataFrame) -> None:
         if route_df.empty:
             st.info("This run does not include route geometry in Strava's summary payload.")
         else:
-            st.plotly_chart(build_route_map(route_df, selected_row["name"]), use_container_width=True, config=PLOTLY_CONFIG)
+            st.plotly_chart(build_route_map(route_df, selected_row["name"]), width="stretch", config=PLOTLY_CONFIG)
 
     with route_right:
         run_detail_cols = st.columns(2)
@@ -53,4 +53,4 @@ def render_routes_page(view_df: pd.DataFrame) -> None:
 
     sort_column, ascending = TABLE_SORT_OPTIONS[selected_sort]
     activity_table_df = view_df.copy().sort_values(sort_column, ascending=ascending, na_position="last")
-    st.dataframe(build_activity_table(activity_table_df), use_container_width=True, hide_index=True, height=360)
+    st.dataframe(build_activity_table(activity_table_df), width="stretch", hide_index=True, height=360)

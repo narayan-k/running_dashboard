@@ -59,7 +59,7 @@ def render_plan_page() -> None:
 
         form_cols = st.columns(2)
         with form_cols[0]:
-            if st.button("Save Session", use_container_width=True):
+            if st.button("Save Session", width="stretch"):
                 running_plan[editable_day] = {
                     "type": session_type,
                     "title": session_title.strip() or session_type,
@@ -70,7 +70,7 @@ def render_plan_page() -> None:
                 save_running_plan(running_plan)
                 st.success(f"Saved plan for {editable_day}.")
         with form_cols[1]:
-            if st.button("Clear Day", use_container_width=True):
+            if st.button("Clear Day", width="stretch"):
                 if editable_day in running_plan:
                     running_plan.pop(editable_day)
                     save_running_plan(running_plan)
@@ -106,7 +106,7 @@ def render_plan_page() -> None:
             upcoming_df = pd.DataFrame(upcoming_plan_rows)
             st.dataframe(
                 upcoming_df.rename(columns={"date": "Date", "type": "Type", "title": "Session", "distance_km": "KM", "effort": "Effort"}),
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
                 height=260,
             )

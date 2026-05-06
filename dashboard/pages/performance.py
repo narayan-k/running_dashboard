@@ -26,15 +26,15 @@ def render_performance_page(view_df: pd.DataFrame, weekly_goal_km: float, show_g
     render_section_header("Charts", "Fewer, clearer charts focused on progress, performance, and the meaning behind the numbers.")
     top_left, top_right = st.columns(2)
     with top_left:
-        st.plotly_chart(build_pace_over_time_chart(view_df), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_pace_over_time_chart(view_df), width="stretch", config=PLOTLY_CONFIG)
     with top_right:
-        st.plotly_chart(build_weekly_distance_chart(view_df, weekly_goal_km, show_goal_line), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_weekly_distance_chart(view_df, weekly_goal_km, show_goal_line), width="stretch", config=PLOTLY_CONFIG)
 
     bottom_left, bottom_right = st.columns(2)
     with bottom_left:
-        st.plotly_chart(build_monthly_combo_chart(view_df), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_monthly_combo_chart(view_df), width="stretch", config=PLOTLY_CONFIG)
     with bottom_right:
-        st.plotly_chart(build_rolling_bests_chart(view_df), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_rolling_bests_chart(view_df), width="stretch", config=PLOTLY_CONFIG)
 
     st.markdown("<div style='height:0.75rem;'></div>", unsafe_allow_html=True)
     render_section_header("Comparable Run Progress", "Track pace and heart rate only against similar distances, so improvement is easier to spot.")
@@ -84,6 +84,6 @@ def render_performance_page(view_df: pd.DataFrame, weekly_goal_km: float, show_g
 
     compare_left, compare_right = st.columns(2)
     with compare_left:
-        st.plotly_chart(build_similar_runs_pace_chart(view_df, selected_lower, selected_upper, selected_range_label), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_similar_runs_pace_chart(view_df, selected_lower, selected_upper, selected_range_label), width="stretch", config=PLOTLY_CONFIG)
     with compare_right:
-        st.plotly_chart(build_similar_runs_hr_chart(view_df, selected_lower, selected_upper, selected_range_label), use_container_width=True, config=PLOTLY_CONFIG)
+        st.plotly_chart(build_similar_runs_hr_chart(view_df, selected_lower, selected_upper, selected_range_label), width="stretch", config=PLOTLY_CONFIG)

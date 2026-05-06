@@ -202,18 +202,14 @@ def build_activity_table(runs_df: pd.DataFrame) -> pd.io.formats.style.Styler:
             return "background-color: rgba(252, 76, 2, 0.10); color: #9A3412; font-weight: 600;"
         return ""
 
-    return (
-        display.style.format(
-            {
-                "Date": lambda value: pd.Timestamp(value).strftime("%Y-%m-%d"),
-                "Distance (km)": "{:.1f}",
-                "Pace": lambda value: format_pace(value) if pd.notna(value) else "—",
-                "Moving Time (min)": "{:.0f}",
-                "Elev (m)": "{:.0f}",
-                "Avg HR": lambda value: f"{value:.0f}" if pd.notna(value) else "—",
-                "Kudos": "{:.0f}",
-            }
-        )
-        .applymap(pace_style, subset=["Pace"])
-        .applymap(highlight_style, subset=["Highlight"])
-    )
+    return display.style.format(
+        {
+            "Date": lambda value: pd.Timestamp(value).strftime("%Y-%m-%d"),
+            "Distance (km)": "{:.1f}",
+            "Pace": lambda value: format_pace(value) if pd.notna(value) else "—",
+            "Moving Time (min)": "{:.0f}",
+            "Elev (m)": "{:.0f}",
+            "Avg HR": lambda value: f"{value:.0f}" if pd.notna(value) else "—",
+            "Kudos": "{:.0f}",
+        }
+    ).map(pace_style, subset=["Pace"]).map(highlight_style, subset=["Highlight"])

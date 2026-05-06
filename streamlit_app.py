@@ -34,7 +34,7 @@ inject_global_styles()
 
 
 st.sidebar.title("Controls")
-refresh_now = st.sidebar.button("Refresh from Strava", use_container_width=True)
+refresh_now = st.sidebar.button("Refresh from Strava", width="stretch")
 st.sidebar.caption("Daily caching stays on by default. Refresh bypasses the cache once.")
 
 if refresh_now:
